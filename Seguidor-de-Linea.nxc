@@ -1,0 +1,35 @@
+#include "NXCDefs.h"
+
+task main(){
+     int sensorValue;
+
+     SetSensorColorFull(IN_3);
+
+      int sentido = 0; //giramos derecha primero
+
+
+    while(true){
+     sensorValue = Sensor(IN_3);
+
+     // gira a la derecha
+        OnFwd(OUT_C,45);
+        OnFwd(OUT_A,12);
+        sentido = 1;
+
+     if(sensorValue ==6){
+         if( sentido == 1 ){
+            //gira izquierda
+            OnFwd(OUT_A,45);
+            OnFwd(OUT_C,12);
+           sentido = 0;
+       }else if(sentido == 0){
+          //gira derecha
+            OnFwd(OUT_C,45);
+            OnFwd(OUT_A,12);
+        sentido = 1;
+       }
+     }
+
+     Wait(100);
+     }
+}
